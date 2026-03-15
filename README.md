@@ -1,73 +1,62 @@
-# Welcome to your Lovable project
+# Frontier Distributed UI
 
-## Project info
+A React + TypeScript frontend for the Frontier microservice ecosystem.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Architecture
 
-## How can I edit this code?
+All API requests flow through the **frontier_consult** API gateway, which routes to downstream services:
 
-There are several ways of editing your application.
+```
+Frontend  ──▶  frontier_consult (API Gateway)
+                 ├──▶ border_info_admin  (Django FAQ data)
+                 ├──▶ ai_for_chatbot     (AI Q&A service)
+                 └──▶ release-orchestrator-idp (Release management)
+```
 
-**Use Lovable**
+## Services
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+| Service | Purpose | Endpoints Used |
+|---|---|---|
+| `frontier_consult` | API Gateway & Auth | `POST /api/auth/register`, `POST /api/auth/login` |
+| `border_info_admin` | FAQ content (Django) | `GET /api/faq` |
+| `ai_for_chatbot` | AI assistant | `POST /api/ai/question` |
+| `release-orchestrator-idp` | Release orchestration | `GET /api/releases` |
 
-Changes made via Lovable will be committed automatically to this repo.
+## Event-Driven Architecture
 
-**Use your preferred IDE**
+User actions trigger events published to a message broker (RabbitMQ/Kafka):
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- `USER_QUESTION_SUBMITTED` — When a user asks the AI assistant
+- `FAQ_VIEWED` — When a user expands an FAQ item
+- `RELEASE_REQUESTED` — When a release action is triggered
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Pages
 
-Follow these steps:
+1. **Auth Page** (`/`) — Split-screen login & registration
+2. **Dashboard** (`/dashboard`) — FAQ accordion + AI chat assistant
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## Local Setup
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
+npm install
+echo "VITE_API_GATEWAY_URL=http://localhost:8000" > .env
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Backend Integration
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+All API calls use mock data by default. To connect to real backends:
 
-**Use GitHub Codespaces**
+1. Set `VITE_API_GATEWAY_URL` in `.env` to your frontier_consult gateway URL
+2. Uncomment the actual API calls in `src/services/*.ts` files
+3. Remove mock implementations
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Each service file has TODO comments marking integration points.
 
-## What technologies are used for this project?
+## Tech Stack
 
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- React 18 + TypeScript + Vite
+- Tailwind CSS + shadcn/ui
+- Framer Motion (animations)
+- Axios (HTTP client)
+- React Router (routing)
