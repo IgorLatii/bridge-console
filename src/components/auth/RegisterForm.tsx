@@ -31,7 +31,7 @@ export default function RegisterForm({ onSuccess }: { onSuccess: () => void }) {
 
     setLoading(true);
     try {
-      await authService.register({ username: username.trim(), password });
+      await authService.register({ email: email.trim(), password });
       onSuccess();
     } catch {
       setError('Registration failed. Please try again.');
