@@ -22,7 +22,7 @@ export default function AuthPage() {
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
-        className="flex w-full flex-col justify-center px-8 py-20 lg:w-1/2 lg:px-12"
+        className="flex w-full flex-col justify-center px-8 py-20 md:w-1/2 md:px-12"
         style={{ boxShadow: '1px 0 0 0 rgba(0,0,0,0.05)' }}
       >
         <div className="mx-auto w-full max-w-md">
