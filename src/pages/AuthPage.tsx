@@ -40,7 +40,7 @@ export default function AuthPage() {
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="hidden w-1/2 flex-col justify-center bg-surface px-12 py-20 lg:flex"
+        className="hidden w-1/2 flex-col justify-center bg-surface px-12 py-20 md:flex"
       >
         <div className="mx-auto w-full max-w-md">
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">Welcome Back</h2>
