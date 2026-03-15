@@ -28,7 +28,7 @@ export default function DashboardPage() {
       {/* Nav */}
       <nav className="sticky top-0 z-10 border-b border-border bg-surface/80 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-          <span className="text-xl font-bold tracking-tighter">FRONTIER</span>
+          
           <div className="flex items-center gap-4">
             {/* Backend service: release-orchestrator-idp */}
             <ReleaseStatusCard />
@@ -56,7 +56,7 @@ export default function DashboardPage() {
             <header className="mb-8">
               <h1 className="text-3xl font-bold tracking-tight">Help Center</h1>
               <p className="mt-2 text-muted-foreground">
-                Frequently asked questions about the Frontier ecosystem.
+                Frequently asked questions about the ecosystem.
               </p>
               <p className="mt-1 text-xs text-muted-foreground/60">
                 Data source: border_info_admin via frontier_consult gateway

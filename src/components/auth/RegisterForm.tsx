@@ -6,7 +6,7 @@ import { authService } from '../../services/authService';
  * POST /api/auth/register
  */
 export default function RegisterForm({ onSuccess }: { onSuccess: () => void }) {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
@@ -16,7 +16,7 @@ export default function RegisterForm({ onSuccess }: { onSuccess: () => void }) {
     e.preventDefault();
     setError('');
 
-    if (!username.trim() || !password.trim()) {
+    if (!email.trim() || !password.trim()) {
       setError('Please fill in all fields.');
       return;
     }
@@ -31,7 +31,7 @@ export default function RegisterForm({ onSuccess }: { onSuccess: () => void }) {
 
     setLoading(true);
     try {
-      await authService.register({ username: username.trim(), password });
+      await authService.register({ email: email.trim(), password });
       onSuccess();
     } catch {
       setError('Registration failed. Please try again.');
@@ -43,16 +43,16 @@ export default function RegisterForm({ onSuccess }: { onSuccess: () => void }) {
   return (
     <form onSubmit={handleSubmit} className="mt-8 space-y-5">
       <div>
-        <label htmlFor="reg-username" className="block text-sm font-medium text-foreground">
-          Username
+        <label htmlFor="reg-email" className="block text-sm font-medium text-foreground">
+          Email
         </label>
         <input
-          id="reg-username"
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          id="reg-email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           className="mt-1.5 block w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all"
-          placeholder="Choose a username"
+          placeholder="Enter your email"
           disabled={loading}
         />
       </div>

@@ -19,7 +19,7 @@ export const authService = {
     await new Promise((resolve) => setTimeout(resolve, 1200));
     const mockResponse: AuthResponse = {
       token: 'mock-jwt-token-' + Date.now(),
-      user: { id: 1, username: credentials.username },
+      user: { id: 1, email: credentials.email },
     };
     localStorage.setItem('token', mockResponse.token);
     return mockResponse;
@@ -37,7 +37,7 @@ export const authService = {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     const mockResponse: AuthResponse = {
       token: 'mock-jwt-token-' + Date.now(),
-      user: { id: 1, username: credentials.username },
+      user: { id: 1, email: credentials.email },
     };
     localStorage.setItem('token', mockResponse.token);
     return mockResponse;

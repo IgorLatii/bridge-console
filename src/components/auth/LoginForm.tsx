@@ -6,7 +6,7 @@ import { authService } from '../../services/authService';
  * POST /api/auth/login
  */
 export default function LoginForm({ onSuccess }: { onSuccess: () => void }) {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -15,7 +15,7 @@ export default function LoginForm({ onSuccess }: { onSuccess: () => void }) {
     e.preventDefault();
     setError('');
 
-    if (!username.trim() || !password.trim()) {
+    if (!email.trim() || !password.trim()) {
       setError('Please fill in all fields.');
       return;
     }
@@ -26,7 +26,7 @@ export default function LoginForm({ onSuccess }: { onSuccess: () => void }) {
 
     setLoading(true);
     try {
-      await authService.login({ username: username.trim(), password });
+      await authService.login({ email: email.trim(), password });
       onSuccess();
     } catch {
       setError('Invalid credentials. Please try again.');
@@ -38,16 +38,16 @@ export default function LoginForm({ onSuccess }: { onSuccess: () => void }) {
   return (
     <form onSubmit={handleSubmit} className="mt-8 space-y-5">
       <div>
-        <label htmlFor="login-username" className="block text-sm font-medium text-foreground">
-          Username
+        <label htmlFor="login-email" className="block text-sm font-medium text-foreground">
+          Email
         </label>
         <input
-          id="login-username"
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          id="login-email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           className="mt-1.5 block w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all"
-          placeholder="Enter your username"
+          placeholder="Enter your email"
           disabled={loading}
         />
       </div>

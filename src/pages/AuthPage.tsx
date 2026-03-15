@@ -27,7 +27,7 @@ export default function AuthPage() {
       >
         <div className="mx-auto w-full max-w-md">
           <div className="mb-8">
-            <span className="text-xl font-bold tracking-tighter text-foreground">FRONTIER</span>
+            
           </div>
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">Create Account</h2>
           <p className="mt-2 text-sm text-muted-foreground">Join the distributed network.</p>
