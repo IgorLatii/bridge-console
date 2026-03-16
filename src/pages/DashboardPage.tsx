@@ -9,7 +9,7 @@
  */
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { LogOut } from 'lucide-react';
+import { LogOut, Settings } from 'lucide-react';
 import FAQAccordion from '../components/faq/Accordion';
 import ChatWidget from '../components/chat/ChatWidget';
 import ReleaseStatusCard from '../components/release/StatusCard';
