@@ -9,7 +9,7 @@
  */
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { LogOut } from 'lucide-react';
+import { LogOut, Settings } from 'lucide-react';
 import FAQAccordion from '../components/faq/Accordion';
 import ChatWidget from '../components/chat/ChatWidget';
 import ReleaseStatusCard from '../components/release/StatusCard';
@@ -30,6 +30,13 @@ export default function DashboardPage() {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
           
           <div className="flex items-center gap-4">
+            <button
+              onClick={() => navigate('/admin')}
+              className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <Settings className="h-3.5 w-3.5" />
+              Admin Panel
+            </button>
             {/* Backend service: release-orchestrator-idp */}
             <ReleaseStatusCard />
             <button
