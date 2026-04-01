@@ -28,7 +28,7 @@ import {
 import { toast } from '@/hooks/use-toast';
 import { userService, type UserDto } from '@/services/userService';
 
-const API_BASE_URL = 'http://localhost:8081';
+const API_BASE_URL = import.meta.env.VITE_API_GATEWAY_URL || 'http://localhost:8081';
 
 export default function AdminPage() {
   const navigate = useNavigate();

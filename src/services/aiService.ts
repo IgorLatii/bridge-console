@@ -6,7 +6,7 @@ export interface AIAnswerResponse {
   timestamp?: number;
 }
 
-const API_URL = 'http://localhost:8081';
+const API_URL = import.meta.env.VITE_API_GATEWAY_URL || 'http://localhost:8081';
 
 function getAuthHeaders() {
   const token = localStorage.getItem('token');
