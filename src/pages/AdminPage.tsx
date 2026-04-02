@@ -227,10 +227,10 @@ export default function AdminPage() {
               </div>
 
               <div className="flex items-center gap-3">
-                <Button variant="outline" onClick={openSwaggerUi}>
+                /* <Button variant="outline" onClick={openSwaggerUi}>
                   <BookOpen className="mr-1.5 h-4 w-4" />
                   Swagger UI
-                </Button>
+                </Button> */
 
                 <Button variant="outline" onClick={openApiDocs} disabled={docsLoading}>
                   <FileJson className="mr-1.5 h-4 w-4" />
